@@ -4,6 +4,10 @@ on:
     branches:
       - main
       - develop
+  pull_request:
+    branches:
+      - main
+      - develop
 jobs:
   build-android:
     runs-on: ubuntu-latest
@@ -12,14 +16,20 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v2
         with:
-          distribution: "temurin"
-          java-version: "17"
+          distribution: 'temurin'
+          java-version: '17'
       - name: Install npm dependencies
         run: |
           npm install
       - name: Run tests
         run: |
           npm test
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        if: success() || failure()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Prebuild
         run: |
           npx expo prebuild
