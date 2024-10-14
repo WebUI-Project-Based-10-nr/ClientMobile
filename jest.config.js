@@ -1,9 +1,6 @@
 module.exports = {
   preset: 'jest-expo',
-  coverageReporters: [
-    ['text', null],
-    ['html', 'src/tests/coverage']
-  ],
+  coverageReporters: [['text', null], ['html', 'src/tests/coverage'], 'lcov'],
   testMatch: ['**/src/**/*.test.js'],
   transformIgnorePatterns: [
     'node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)'
