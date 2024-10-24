@@ -19,7 +19,6 @@ const ButtonsGeneral = () => {
               name='arrowright'
               size={20}
               style={styles.icon}
-              testID='button-icon'
             />
           )}
           mode='contained'
