@@ -15,8 +15,14 @@ const AnimatedCard = ({ data }) => {
         entering={FadeIn}
         exiting={FadeOut}
         style={styles.imageContainer}
+        testID='image-view'
       >
-        <Image resizeMode='contain' source={data.image} style={styles.image} />
+        <Image
+          resizeMode='contain'
+          source={data.image}
+          style={styles.image}
+          testID='test-image'
+        />
       </Animated.View>
       <View style={styles.textWrapper}>
         <Animated.Text
