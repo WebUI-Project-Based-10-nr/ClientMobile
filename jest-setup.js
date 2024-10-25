@@ -1,4 +1,5 @@
 require('react-native-reanimated').setUpTests()
+import 'react-native-reanimated/mock'
 
 jest.mock('react-native-reanimated', () => {
   const ActualReanimated = jest.requireActual('react-native-reanimated/mock')

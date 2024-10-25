@@ -12,11 +12,11 @@ const mockData = {
 describe('AnimatedCard component', () => {
   beforeEach(() => {
     render(<AnimatedCard data={mockData} />)
+    jest.useFakeTimers()
     jest.clearAllMocks()
   })
 
   afterEach(() => {
-    jest.runOnlyPendingTimers()
     jest.useRealTimers()
   })
 
@@ -36,7 +36,6 @@ describe('AnimatedCard component', () => {
   })
 
   it('should implement FadeIn animation correctly', () => {
-    jest.useFakeTimers()
     const imageView = screen.getByTestId('image-view')
     expect(imageView).toBeTruthy()
 
