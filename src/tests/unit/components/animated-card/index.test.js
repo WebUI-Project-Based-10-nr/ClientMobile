@@ -1,9 +1,5 @@
-//should implement fade animations correctly (FadeIn, FadeOut)
-//should implement slide animations correctly (SlideInRight, SlideOutLeft)
-//should implement SlideInRight animation with delay
-//import { act } from 'react-dom/test-utils'
 import { render, screen } from '@testing-library/react-native'
-import { FadeIn, FadeOut } from 'react-native-reanimated'
+import { FadeIn } from 'react-native-reanimated'
 import iconInfo from '~/assets/sign-up/icon-info.png'
 import { AnimatedCard } from '~/components'
 
@@ -12,10 +8,6 @@ const mockData = {
   description: 'Some description',
   image: iconInfo
 }
-
-const getDefaultStyle = () => ({
-  opacity: 0
-})
 
 describe('AnimatedCard component', () => {
   beforeEach(() => {
@@ -52,21 +44,4 @@ describe('AnimatedCard component', () => {
 
     expect(FadeIn).toHaveBeenCalled()
   })
-
-  //   test('withTiming animation', () => {
-  //     const style = getDefaultStyle();
-
-  //     const { getByTestId } = render(<AnimatedComponent />);
-  //     const view = getByTestId('view');
-  //     const button = getByTestId('button');
-
-  //     expect(view.props.style.width).toBe(0);
-  //     expect(view).toHaveAnimatedStyle(style);
-
-  //     fireEvent.press(button);
-  //     jest.advanceTimersByTime(600);
-
-  //     style.width = 100;
-  //     expect(view).toHaveAnimatedStyle(style);
-  //   });
 })
