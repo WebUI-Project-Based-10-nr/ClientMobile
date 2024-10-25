@@ -1,5 +1,10 @@
 import React from 'react'
-import { render, fireEvent, screen } from '@testing-library/react-native'
+import {
+  render,
+  fireEvent,
+  screen,
+  userEvent
+} from '@testing-library/react-native'
 import { styles } from '~/containers/paper-text/PaperText.styles'
 import { PaperText } from '~/containers'
 
@@ -59,10 +64,10 @@ describe('PaperText Component', () => {
     ])
   })
 
-  it('handles onPress correctly', () => {
+  it('handles onPress correctly', async () => {
     const mockOnPress = jest.fn()
     render(<PaperText onPress={mockOnPress}>Press</PaperText>)
-    fireEvent.press(screen.getByText('Press'))
+    await userEvent.press(screen.getByText('Press'))
     expect(mockOnPress).toHaveBeenCalledTimes(1)
   })
 
