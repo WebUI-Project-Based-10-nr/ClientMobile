@@ -72,7 +72,7 @@ describe('PaperText Component', () => {
   })
 
   it('applies bold style when bold prop is true', () => {
-    render(<PaperText bold>Bold</PaperText>)
+    render(<PaperText bold={true}>Bold</PaperText>)
     const boldText = screen.getByText('Bold')
     checkStyle(boldText, [expect.objectContaining({ fontWeight: 'bold' })])
   })
