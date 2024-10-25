@@ -1,18 +1,18 @@
 require('react-native-reanimated').setUpTests()
-import 'react-native-reanimated/mock'
 
 jest.mock('react-native-reanimated', () => {
   const ActualReanimated = jest.requireActual('react-native-reanimated/mock')
+  const { View } = jest.requireActual('react-native')
+
+  const MockedView = ({ children, ...props }) => (
+    <View {...props}>{children}</View>
+  )
 
   return {
     ...ActualReanimated,
-    FadeIn: jest.fn().mockImplementation(() => ({
-      duration: 300,
-      start: jest.fn()
-    })),
-    FadeOut: jest.fn().mockImplementation(() => ({
-      duration: 300,
-      start: jest.fn()
-    }))
+    default: {
+      ...ActualReanimated.default,
+      View: MockedView
+    }
   }
 })

@@ -1,5 +1,10 @@
 import { render, screen } from '@testing-library/react-native'
-import { FadeIn } from 'react-native-reanimated'
+import {
+  FadeIn,
+  FadeOut,
+  SlideInRight,
+  SlideOutLeft
+} from 'react-native-reanimated'
 import iconInfo from '~/assets/sign-up/icon-info.png'
 import { AnimatedCard } from '~/components'
 
@@ -12,12 +17,7 @@ const mockData = {
 describe('AnimatedCard component', () => {
   beforeEach(() => {
     render(<AnimatedCard data={mockData} />)
-    jest.useFakeTimers()
     jest.clearAllMocks()
-  })
-
-  afterEach(() => {
-    jest.useRealTimers()
   })
 
   it('AnimatedCard should render correctly', () => {
@@ -35,12 +35,40 @@ describe('AnimatedCard component', () => {
     expect(image.props.source).toBe(mockData.image)
   })
 
-  it('should implement FadeIn animation correctly', () => {
+  it('should contain FadeIn as "entering" prop for Image', () => {
     const imageView = screen.getByTestId('image-view')
+
     expect(imageView).toBeTruthy()
+    expect(imageView.props.entering).toBe(FadeIn)
+  })
 
-    jest.advanceTimersByTime(300)
+  it('should contain FadeOut as "entering" prop for Image', () => {
+    const imageView = screen.getByTestId('image-view')
 
-    expect(FadeIn).toHaveBeenCalled()
+    expect(imageView).toBeTruthy()
+    expect(imageView.props.entering).toBe(FadeIn)
+  })
+
+  it('should contain FadeOut as "exiting" prop for Image', () => {
+    const imageView = screen.getByTestId('image-view')
+
+    expect(imageView).toBeTruthy()
+    expect(imageView.props.exiting).toBe(FadeOut)
+  })
+
+  it('should contain SlideInRight as "entering" prop for Animated.Text', () => {
+    const title = screen.getByText(mockData.title)
+    const description = screen.getByText(mockData.description)
+
+    expect(title.props.entering).toBe(SlideInRight)
+    expect(description.props.entering).toBe(SlideInRight)
+  })
+
+  it('should contain SlideOutLeft as "exiting" prop for Animated.Text', () => {
+    const title = screen.getByText(mockData.title)
+    const description = screen.getByText(mockData.description)
+
+    expect(title.props.exiting).toBe(SlideOutLeft)
+    expect(description.props.exiting).toBe(SlideOutLeft)
   })
 })
