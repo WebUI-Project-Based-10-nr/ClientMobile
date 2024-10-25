@@ -1,6 +1,9 @@
 module.exports = {
   preset: 'jest-expo',
-  setupFilesAfterEnv: ['./jest-setup.js'],
+  setupFilesAfterEnv: [
+    '@testing-library/react-native/extend-expect',
+    './jest-setup.js'
+  ],
   coverageReporters: [['text', null], ['html', 'src/tests/coverage'], 'lcov'],
   testMatch: ['**/src/**/*.test.js'],
   transformIgnorePatterns: [
